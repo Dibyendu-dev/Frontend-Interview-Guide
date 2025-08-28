@@ -1,0 +1,5 @@
+Q := what is the difference between arrow function and normal function based on lexical scoping ?
+
+ans := https://www.geeksforgeeks.org/javascript/difference-between-regular-functions-and-arrow-functions/
+
+
