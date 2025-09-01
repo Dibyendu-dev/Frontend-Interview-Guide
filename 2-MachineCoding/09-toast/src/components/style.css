@@ -21,6 +21,22 @@
   }
 }
 
+.success {
+  background-color: #46af46;
+}
+
+.danger {
+  background-color: #df5239;
+}
+
+.warning {
+  background-color: #fca200;
+}
+
+.info {
+  background-color: #5899fe;
+}
+
 @keyframes slide {
   0% {
     transform: translateY(-100%);
