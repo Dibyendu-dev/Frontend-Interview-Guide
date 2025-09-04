@@ -1,0 +1,7 @@
+.star {
+    cursor: pointer;
+}
+
+.active {
+    color: gold;
+}
