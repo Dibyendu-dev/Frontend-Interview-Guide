@@ -124,5 +124,159 @@ const isarr =Array.isArray(salad); //true
     const arr1 = [1,2,3];
     const arr2 = [4,5,6];
     const arr3 = [...arr1, ...arr2]
-    console.log(arr3);
+   // console.log(arr3);
 }
+
+{
+    // length ==> it is proprtty not methods , so dont use length()
+    const arr = [1,5,8,9]
+    // arr length ==> upto 2 **32 -1
+    arr.length = 0; // remove all elements from the arr
+    // console.log(arr.length);
+}
+
+{
+    // concat() ==> returns new array
+    const arr1 = [1,2,3];
+    const arr2 = [4,5,6];
+    const arr3 = [7,8,9]
+    const mergearr = arr1.concat(arr2, arr3);
+    // console.log(mergearr);
+
+}
+
+{
+    // join() ==> needs to separate onl elem to next elem
+    const emotions = ["🙂", "😍", "🙄", "😟"];
+    const joinEmo = emotions.join(" : ")
+    // console.log(joinEmo);
+
+    // [].join() // return ""
+
+}
+
+{
+    // fill()
+  const arr = new Array(5).fill("pink");
+    //   console.log(arr)
+}
+
+{
+    // includes() ==> return true/false , and check whether the given elem present or not
+    // it also case sensative
+    
+    const names = ["tom", "alex", "bob", "john"];
+    // console.log(names.includes("ddas"));
+}
+
+{
+    // indexOf() ==>Returns the index of the first occurrence of a value if it present in an array,
+    //  or -1 if it is not present.
+      const names = ["tom", "alex", "bob", "tom"];
+    //   console.log(names.indexOf("bob"))
+    // console.log(names.indexOf("ddas"))
+    // console.log(names.lastIndexOf("tom")) // return index of last occurance
+}
+
+{
+    //    reverse() => modify the org arr
+    const names = ["tom", "alex", "bob", "john"];
+    // console.log(names.reverse())
+}
+
+{
+    // sort() ==> he default sort() method converts the element types into string, order is assending
+    const names = ["tom", "alex", "bob"];
+    // console.log("After default sorting", names.sort());
+
+     let ages = [2, 1000, 10, 3, 23, 12, 30, 21];
+
+    //   console.log(
+    //     "age with default sorting",
+    //     ages.sort(function (a, b) {
+    //         return a === b ? 0 : a > b ? 1 : -1;
+    //     }))
+ 
+}
+
+{
+    // splice()  => splice(start, deleteCount , item, item2, item3)
+
+    const names = ["tom" ,"alex","bob"]
+    // console.log(names.splice(0,2)); // [ 'tom', 'alex' ]
+    //  console.log(names.splice(0,2, "john"));
+    //  console.log(names) // [ 'john', 'bob' ]
+     names.splice(1,0,"zack")
+    //  console.log(names); [ 'tom', 'zack', 'alex', 'bob' ]
+}
+
+{
+    // at()
+    const junkFoodILove = ["🥖", "🍔", "🍟", "🍕", "🌭", "🥪", "🌮", "🍿"];
+    // console.log(junkFoodILove.at(0))
+    // console.log(junkFoodILove.at(1))
+    // console.log(junkFoodILove.at(-1))
+    // console.log(junkFoodILove.at(-5))
+    // console.log(junkFoodILove.at(3))
+    // console.log(junkFoodILove.at(8))
+
+}
+
+{
+    // flat()
+    const arr1 = [1,2,3,4,[5,6,[7,[8,9]]]]
+    // console.log(arr1.flat()); // [ 1, 2, 3, 4, 5, 6, [ 7, [ 8, 9 ] ] ]
+    // console.log(arr1.flat(Infinity)) 
+}
+
+{
+   // grouping 
+
+   const employees = [
+        { name: "Bob", dept: "Engineering", salary: 5000 },
+        { name: "Alex", dept: "HR", salary: 3000 },
+        { name: "Ravi", dept: "Engineering", salary: 7000 },
+        { name: "John", dept: "Engineering", salary: 1000 },
+        { name: "Tom", dept: "Sales", salary: 6000 },
+    ];
+
+   const newEmp = Object.groupBy(employees,({dept})=>dept);
+   const newEmp1 = Object.groupBy(employees,({salary}) => (salary> 5000 ? "More than 5k" : "less than 5k"))
+    //    console.log(newEmp1);
+}
+
+{
+    // toReversed() => doesn't change the org array
+    const arr = [1, 2 , 3 , 4]
+   const  newarr = arr.toReversed();
+    // console.log(newarr);
+    // console.log(arr);
+}
+
+{
+    // toSorted();
+    const arr = ['a','b','c','d']
+    arr.reverse();
+    const newArr = arr.toSorted();
+
+    // console.log(arr);
+    // console.log(newArr);
+}
+
+{
+    // toSpliced()
+    const months = ["Jan", "Mar", "Apr", "May"];
+    const newM = months.toSpliced(1,0,"feb");
+
+    // console.log(months)
+    // console.log(newM);
+} 
+
+{
+    // with()
+    const arr = [1, 2 , 3 , 4]
+    // const newArr = arr.with(2,55);
+    const newArr = arr.with(-2,55);
+    // console.log(newArr);
+}
+
