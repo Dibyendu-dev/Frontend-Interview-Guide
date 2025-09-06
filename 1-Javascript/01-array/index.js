@@ -318,4 +318,162 @@ const isarr =Array.isArray(salad); //true
 }
 
 
+let customers = [
+    {
+        id: 1,
+        f_name: "Abby",
+        l_name: "Thomas",
+        gender: "M",
+        married: true,
+        age: 32,
+        expense: 500,
+        purchased: ["Shampoo", "Toys", "Book"],
+    },
+    {
+        id: 2,
+        f_name: "Jerry",
+        l_name: "Tom",
+        gender: "M",
+        married: true,
+        age: 64,
+        expense: 100,
+        purchased: ["Stick", "Blade"],
+    },
+    {
+        id: 3,
+        f_name: "Dianna",
+        l_name: "Cherry",
+        gender: "F",
+        married: true,
+        age: 22,
+        expense: 1500,
+        purchased: ["Lipstik", "Nail Polish", "Bag", "Book"],
+    },
+    {
+        id: 4,
+        f_name: "Dev",
+        l_name: "Currian",
+        gender: "M",
+        married: true,
+        age: 82,
+        expense: 90,
+        purchased: ["Book"],
+    },
+    {
+        id: 5,
+        f_name: "Maria",
+        l_name: "Gomes",
+        gender: "F",
+        married: false,
+        age: 7,
+        expense: 300,
+        purchased: ["Toys"],
+    },
+];
 
+
+// filter() => Filtering out the value from an array based on the true condition
+
+const seniorCustomer = customers.filter((cutomer) => cutomer.age>=60);
+// console.log(seniorCustomer);
+
+// map() ==> use for transform array
+
+const customerWithFullname = customers.map((cutomer) => {
+    let title = "";
+
+    if(cutomer.gender === "M"){
+        title = "Mr."
+    } else if(cutomer.gender === 'F' && cutomer.married){
+        title = "Mrs."
+    } else {
+        title = "Miss"
+    }
+
+    cutomer["full_name"] = `${title} ${cutomer.f_name} ${cutomer.l_name}`
+
+    return  cutomer
+    
+
+})
+
+// console.log(customerWithFullname);
+
+// reduce()
+// arr.reduce(
+//     reducer(
+//        accumulator,
+//        currentValue,
+//        index,
+//        array),
+//     initialValue);
+// A reducer function which is also called as callback function 
+// to be called on each element of the array
+
+{
+    const arr = [1,2 , 3,4,5,6,7,8,9]
+    const ret = arr.reduce((acc,curr)=>{
+        return acc+ curr
+    },0)
+   // console.log(ret)
+}
+
+// The average age of the Customers who have purchased the Item, 'Book'.
+let count = 0
+const total =customers.reduce((acc,cus)=>{
+    if(cus.purchased.includes("Book")) {
+        acc = acc + cus.age;
+        count = count+1
+    }
+    return acc
+}, 0)
+
+// console.log(Math.floor(total/count))
+
+// some()
+const hasYoungCustomer = customers.some((cus) => {
+    return cus.age<10;
+})
+// console.log(hasYoungCustomer);
+
+// every()
+
+const isAllMarried = customers.every((cus) => {
+    return cus.married === true
+})
+
+// console.log(isAllMarried)
+
+// find()
+const foundYoungCus =  customers.find((cus) => {
+    return cus.age <10
+})
+
+// console.log(foundYoungCus);
+
+// findIndex()
+const foundYoungCusInd =  customers.findIndex((cus) => {
+    return cus.age <10
+})
+
+// console.log(foundYoungCusInd);
+
+// forEach()
+{
+    const err = [1,2,3,4,5,6,7]
+    let sum = 0
+    err.forEach((e)=>{
+        sum= sum+ e;
+    })
+    // console.log(sum)
+
+    //for of loop
+    for(const val of err){
+        // console.log(val)
+    }
+
+    //for in loop
+    for(const val in err){
+        // console.log(err[val])
+    }
+}
