@@ -280,3 +280,42 @@ const isarr =Array.isArray(salad); //true
     // console.log(newArr);
 }
 
+{
+    // array like ==> e.g- arguments, htmlcollection,nodelist
+    // {key: "value"} // object
+    // [1,2,3] // array
+
+      const arr_like = { 0: "I", 1: "am", 2: "ddas", length: 3 };
+        // console.log( arr_like[2])    
+        // console.log(arr_like.length) 
+        // console.log(Array.isArray(arr_like)) 
+        // console.log(arr_like instanceof(Object)) 
+
+    function checkargs () {
+        //   console.log("Array Like Args", arguments);
+          const argArr = [...arguments];
+        // console.log("Converetd Arary Args", argArr);
+         argArr.forEach((elem) => {
+            // console.log(elem);
+        });
+    }
+    checkargs(5,12,15,156)
+
+   
+    const new1 = Array.from(checkargs)
+    // new1.forEach((elem) => (console.log(elem)));
+}
+
+{
+   // of()
+
+   const a = new Array(1,2,3,4,5,6);
+   const b = [7,8,9]
+
+   const c = Array.of(a,b, true)
+    //    console.log(c[1]);
+    //    console.log(Array.isArray(c))
+}
+
+
+
