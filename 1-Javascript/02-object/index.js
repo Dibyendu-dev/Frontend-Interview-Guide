@@ -139,9 +139,9 @@ emp.sal = 200;
 emp.name = "Alex";
 delete emp.sal;
 
-console.log(emp)
+// console.log(emp)
 
-console.log(Object.isFrozen(emp));
+// console.log(Object.isFrozen(emp));
 
 
 const dept = {
@@ -154,9 +154,50 @@ dept.address = "Bangalore"
 delete dept.name;
 
 dept.name = "HR"
-console.log(dept)
+// console.log(dept)
 
 // hasOwn
 
-console.log(Object.hasOwn(dept, "address"))
-console.log(Object.hasOwn(myobj, "age"))
+// console.log(Object.hasOwn(dept, "address"))
+// console.log(Object.hasOwn(myobj, "age"))
+
+
+{
+    const student = {
+    'name': 'John Williamson',
+    'age': 9,
+    'std': 3,
+    'subjects': ['Maths', 'English', 'EVS'],
+    'parents': {
+      'father': 'Brown Williamson',
+      'mother': 'Sophia',
+      'email': 'john-parents@abcde.com'
+    },
+    'address': {
+      'street': '65/2, brooklyn road',
+      'city': 'Carterton',
+      'country': 'New Zealand',
+      'zip': 5791
+    }
+   }
+
+   const {name,age} = student
+    //    console.log(name);
+    //    console.log(age);
+
+    const {subjects} = student;
+    //    console.log(subjects)
+
+    const {address:{zip}} = student   // nested obj destrucring
+
+//    console.log(zip);
+
+   function sendmail ({parents: {email}}){     // obj destrucing in fun parameter
+    // console.log(`send mail tp ${email}`) 
+   }
+
+   sendmail(student);
+
+   const {name:nam , age: boyos} = student  // object alias
+   console.log(nam,boyos);
+}
