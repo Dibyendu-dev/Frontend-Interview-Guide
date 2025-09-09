@@ -2,7 +2,7 @@ import { useState } from "react"
 import ReplyBox from "./ReplyBox"
 
 
-function CommentBox({comment, allComments}) {
+function CommentBox({comment, allComments, addComment}) {
     const [showReplyBox, setShowReplyBox] = useState(false)
     const handleClick = () => {
         setShowReplyBox(!showReplyBox)
@@ -18,11 +18,15 @@ function CommentBox({comment, allComments}) {
                 </div>
             </div>
         </div>
-       { showReplyBox && <ReplyBox setShowReplyBox={setShowReplyBox}/>} 
+       { showReplyBox && <ReplyBox setShowReplyBox={setShowReplyBox} addComment={addComment} id={comment.id}/>} 
 
        <div className="nested-comments">
-        {comment.children.map((childId,id)=>{
-            return (<CommentBox key={id} comment={allComments[childId]} allComments={allComments} />)
+        {comment.children.map((childId)=>{
+            return (<CommentBox key={childId} 
+                    comment={allComments[childId]} 
+                    allComments={allComments} 
+                    addComment={addComment}
+                />)
         })}
        </div>
     </div>

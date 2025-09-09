@@ -1,8 +1,9 @@
 import { useState } from "react"
 
-function ReplyBox({setShowReplyBox}) {
+function ReplyBox({setShowReplyBox, addComment, id}) {
     const [reply, setReply] = useState("");
     const handleReply = ()=>{
+        addComment(reply,id)
         setReply("");
         setShowReplyBox(false)
     }
