@@ -1,26 +1,10 @@
 import './App.css'
 import CommentBox from './components/CommentBox'
 import commentdata from "./commentData.json"
-import {  useState } from 'react'
+import useComment from "./hooks/useComment.js"
 
 function App() {
-  const [comments, setComments] = useState(commentdata.comments)
-
-  const addComment = (value, parentId) =>{
-    const newId = Date.now();
-    const newComment = {
-      id: newId,
-      value,
-      parentId,
-      children: []
-    }
-
-    setComments((prevComment) => {
-      const updatedComment = { ...prevComment, [newId]:newComment};
-      updatedComment[parentId].children.push(newId);
-      return updatedComment
-    })
-  }
+   const {comments, addComment} = useComment(commentdata)
 
   return (
     <>

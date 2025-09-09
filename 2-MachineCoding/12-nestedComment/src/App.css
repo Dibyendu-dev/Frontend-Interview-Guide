@@ -77,7 +77,7 @@
 /* Nested comments are indented and separated with a left border */
 .nested-comments {
   padding-left: 1rem;
-  /* border-left: 1px solid grey; */
+  border-left: 1px solid grey;
   margin-top: 0.5rem;
 }
 
