@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  height: 400px;
+  width: 100%;
+  object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
+}
+
+.container {
+  position: relative;
+  /* overflow: hidden; */
+}
+
+.left-btn,
+.right-btn {
+  position: absolute;
+  background-color: black;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 10px;
+  top: 50%;
+  cursor: pointer;
+}
+
+.left-btn {
+  left: 1rem;
+}
+.right-btn {
+  right: 1rem;
+}
