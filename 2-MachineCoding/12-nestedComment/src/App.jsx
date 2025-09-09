@@ -4,11 +4,11 @@ import commentdata from "./commentData.json"
 import useComment from "./hooks/useComment.js"
 
 function App() {
-   const {comments, addComment} = useComment(commentdata)
+   const {comments, addComment, deleteComment} = useComment(commentdata)
 
   return (
     <>
-      <CommentBox comment={comments[1]} allComments={comments} addComment={addComment}/>
+      <CommentBox comment={comments[1]} allComments={comments} addComment={addComment} deleteCommnt={deleteComment}/>
     </>
   )
 }

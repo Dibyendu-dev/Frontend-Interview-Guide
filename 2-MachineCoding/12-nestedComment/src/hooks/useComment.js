@@ -28,5 +28,40 @@ export default function useComment(commentData) {
       return updatedComment;
     });
   };
-  return { comments, addComment };
+
+  const deleteComment = (id) => {
+  setComments((prevComment) => {
+    const updatedComments = structuredClone(prevComment); // Deep copy to avoid mutation
+
+    // Validate if the comment exists
+    if (!updatedComments[id]) {
+      console.error(`Comment with ID ${id} does not exist.`);
+      return prevComment;
+    }
+
+    // Remove the comment ID from the parent's children array
+    const parentId = updatedComments[id].parentId;
+    if (parentId && updatedComments[parentId]?.children) {
+      updatedComments[parentId].children = updatedComments[parentId].children.filter(
+        (childId) => childId !== id
+      );
+    }
+
+    // Recursive function to delete a comment and its children
+    const deleteRecursively = (commentId) => {
+      const comment = updatedComments[commentId];
+      if (comment?.children?.length > 0) {
+        comment.children.forEach((childId) => deleteRecursively(childId));
+      }
+      delete updatedComments[commentId];
+    };
+
+    // Start recursive deletion
+    deleteRecursively(id);
+
+    return updatedComments;
+  });
+};
+
+  return { comments, addComment, deleteComment };
 }
