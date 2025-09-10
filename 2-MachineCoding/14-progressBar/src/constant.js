@@ -1,0 +1,8 @@
+const MIN_Value = 0;
+const MAX_VALUE = 100;
+const INTERVAL_SPEED =150;
+const INTERVAL_INCREMENT = 5;
+
+export {
+    MIN_Value,MAX_VALUE,INTERVAL_SPEED,INTERVAL_INCREMENT
+}
