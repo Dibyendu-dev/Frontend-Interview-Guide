@@ -1,4 +1,5 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Grid from "./Grid";
 
 function InteractiveShape() {
   const [grid, setGrid] = useState(
@@ -6,26 +7,44 @@ function InteractiveShape() {
   );
 
   const queue = useRef([]);
-  const handleclick = (rowindex, colIndex) => {
-    const gridDeepCopy = grid.map((row) => [...row]);
-    gridDeepCopy[rowindex][colIndex] = !gridDeepCopy[rowindex][colIndex]; 
-    queue.current.push(rowindex, colIndex);
-    setGrid(gridDeepCopy);
+  const timerId = useRef([]);
+
+  const handleclick = (rowindex, colIndex, flag) => {
+    if(timerId.current.length > 0 && flag){
+      return
+    }
+    if(grid[rowindex,colIndex] && flag){
+      return
+    }
+    setGrid((prevGrid) => {
+      const gridDeepCopy = prevGrid.map((row) => [...row]);
+      gridDeepCopy[rowindex][colIndex] = flag;
+      if (flag) queue.current.push([rowindex, colIndex]);
+      return gridDeepCopy;
+    });
   };
+
+  useEffect(() => {
+    if (queue.current.length === 9) {
+      queue.current.forEach(([rowIdx, colIdx], idx) => {
+        timerId.current[idx] = setTimeout(() => {
+          handleclick(rowIdx, colIdx, false);
+          if (idx === timerId.current.length - 1) timerId.current = [];
+        }, 1000 * (idx + 1));
+      });
+      queue.current = [];
+    }
+  }, [grid]);
+
+
+  useEffect(()=>{
+    return ()=>{
+      timerId.current.forEach((id)=> clearTimeout(id))
+    }
+  },[])
+
   return (
-    <div className="container">
-      {grid.map((row, rowindex) => {
-        return row.map((cell, colIndex) => {
-          return (
-            <div
-              className={`cell ${cell ? "active" : ""}`}
-              onClick={() => handleclick(rowindex, colIndex)}
-              key={`${rowindex}-${colIndex}`}
-            ></div>
-          );
-        });
-      })}
-    </div>
+    <Grid grid={grid} handleclick={handleclick}/>
   );
 }
 
