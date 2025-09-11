@@ -1,21 +1,17 @@
-
-
-function Grid({grid,handleclick}) {
+export default function Grid({ grid, handleOnClick }) {
   return (
     <div className="container">
-      {grid.map((row, rowindex) => {
-        return row.map((cell, colIndex) => {
+      {grid.map((row, rowIdx) => {
+        return row.map((cell, colIdx) => {
           return (
             <div
               className={`cell ${cell ? "active" : ""}`}
-              onClick={() => handleclick(rowindex, colIndex, true)}
-              key={`${rowindex}-${colIndex}`}
+              key={`${rowIdx}-${colIdx}`}
+              onClick={() => handleOnClick(rowIdx, colIdx, true)}
             ></div>
           );
         });
       })}
     </div>
-  )
+  );
 }
-
-export default Grid

@@ -1,25 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 import Grid from "./Grid";
 
-function InteractiveShape() {
+export default function InteractiveShape() {
   const [grid, setGrid] = useState(
     Array.from({ length: 3 }, () => new Array(3).fill(false))
   );
-
   const queue = useRef([]);
   const timerId = useRef([]);
 
-  const handleclick = (rowindex, colIndex, flag) => {
-    if(timerId.current.length > 0 && flag){
-      return
+  const handleOnClick = (rowIdx, colIdx, flag) => {
+    if (timerId.current.length > 0 && flag) {
+      return;
     }
-    if(grid[rowindex,colIndex] && flag){
-      return
+    if (grid[rowIdx][colIdx] && flag) {
+      return;
     }
     setGrid((prevGrid) => {
       const gridDeepCopy = prevGrid.map((row) => [...row]);
-      gridDeepCopy[rowindex][colIndex] = flag;
-      if (flag) queue.current.push([rowindex, colIndex]);
+      gridDeepCopy[rowIdx][colIdx] = flag;
+      if (flag) queue.current.push([rowIdx, colIdx]);
       return gridDeepCopy;
     });
   };
@@ -28,7 +27,7 @@ function InteractiveShape() {
     if (queue.current.length === 9) {
       queue.current.forEach(([rowIdx, colIdx], idx) => {
         timerId.current[idx] = setTimeout(() => {
-          handleclick(rowIdx, colIdx, false);
+          handleOnClick(rowIdx, colIdx, false);
           if (idx === timerId.current.length - 1) timerId.current = [];
         }, 1000 * (idx + 1));
       });
@@ -36,16 +35,11 @@ function InteractiveShape() {
     }
   }, [grid]);
 
+  useEffect(() => {
+    return () => {
+      timerId.current.forEach((id) => clearTimeout(id));
+    };
+  }, []);
 
-  useEffect(()=>{
-    return ()=>{
-      timerId.current.forEach((id)=> clearTimeout(id))
-    }
-  },[])
-
-  return (
-    <Grid grid={grid} handleclick={handleclick}/>
-  );
+  return <Grid grid={grid} handleOnClick={handleOnClick} />;
 }
-
-export default InteractiveShape;
