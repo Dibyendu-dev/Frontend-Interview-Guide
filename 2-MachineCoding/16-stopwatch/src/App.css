@@ -1,0 +1,25 @@
+input{
+  height: 2rem;
+  width: 2.5rem;
+  padding: 1rem;
+  margin: 0.5rem;
+  
+}
+
+.input-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+button{
+  margin: 10px;
+  padding: 10px;
+  
+}
