@@ -22,4 +22,14 @@ img {
   padding: 1rem;
   color: white;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+.active {
+  color: black;
+  background-color: white;
+  border: 1px solid black;
+}
+.page-btn:hover {
+  transform: scale(0.8);
 }
